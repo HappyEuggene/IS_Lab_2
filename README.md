@@ -1,14 +1,16 @@
 Сьомкін Євгеній ТТП-42
-------
+===
 Лабораторна робота №2 з дисципліни "Інтелектуальні системи"
 ------
+        
 Для запуску використовувалося середовище SWI-Prolog.
+
 ------
 Структура онтології:
 
 equipment
 
-└── device
+    └── device
     └── electronic_device
         ├── computer
         │   ├── desktop_computer
@@ -53,11 +55,59 @@ equipment
                 ├── is_a: nvidia_gpu
                 ├── is_a: amd_gpu
                 └── connected_to: monitor
+---
+Приклади запитів
+---
+Отримати всі компоненти, що є частинами материнської плати:
+
+    ?- part_of(Component, motherboard).
+
+Результат:
+
+- Component = cpu ;
+- Component = ram ;
+- Component = graphics_card ;
+- Component = storage_device ;
+- Component = cpu_cooler.
 
 
 
 
+Перевірити, чи є ddr5_ram видом computer_component:
+
+    ?- is_a(ddr5_ram, computer_component).
+
+Результат:
+
+- true.
+
+
+
+
+Знайти всі пристрої, підключені до transistor:
+
+    ?- connected_to(transistor, Device).
+
+Результат:
+
+- Device = ram ;
+- Device = graphics_card ;
+- Device = storage_device.
+
+
+
+
+Чи є transistor частиною motherboard:
+
+    ?- part_of(transistor, motherboard).
+
+Результат:
+
+- true.
+
+---
 Виконання основних умов
+---
 1. Prolog:
 
 - Онтологія реалізована мовою Prolog у файлі ontology.pl.
